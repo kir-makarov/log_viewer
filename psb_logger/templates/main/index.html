@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form action="" method="POST">
+    <fieldset>
+        <legend>Выберите базу и билд</legend>
+              <input type="radio" name="database" id="database-0" value="tfact01" checked="checked">
+              tfact01
+              <input type="radio" name="database" id="database-1" value="rfact01">
+              rfact01
+
+            <select id="selectbuild" name="selectbuild">
+                {%for item in result_build%}
+              <option value="{{item.build}}" {% if item.build == selected_build %} selected {%endif%}>{{item.build}}</option>
+                {%endfor%}
+            </select>
+            <input type="submit" value="Поиск">
+    </fieldset>
+        {% csrf_token %}
+    </form>
+    <div>
+    <table cellpadding="4" cellspacing="0" border="1" rules="all" style="width:100%;border-collapse:collapse;">
+        <tbody>
+        <tr style="background: blue; color: white;">
+            <th scope="col">Билд</th>
+            <th scope="col">Задача</th>
+            <th scope="col">База</th>
+            <th scope="col">Имя объекта</th>
+            <th scope="col">Лог</th>
+            <th scope="col">Автор</th>
+            <th scope="col">Дата выполнения</th>
+
+
+        </tr>
+        {% for item in result %}
+        <tr>
+            <td>{{item.build}}</td>
+            <td>{{item.task}}</td>
+            <td>{{item.database}}</td>
+            <td>{{item.filename}}</td>
+            <td>{{item.message}}</td>
+            <td>{{item.author}}</td>
+            <td>{{item.date}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+
+
+    </table>
+    </div>
+
+</body>
+</html>

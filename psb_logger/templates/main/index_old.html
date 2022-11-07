@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form action="" method="POST">
+    <select name="my_option" id="my_option" onchange="this.form.submit()">
+        <option value="tfact01">tfact01</option>
+        <option value="rfact01">rfact01</option>
+        {% csrf_token %}
+    </select>
+</form>
+    <div>
+    <table cellpadding="4" cellspacing="0" border="1" rules="all" style="width:100%;border-collapse:collapse;">
+        <tbody>
+        <tr style="background: blue; color: white;">
+            <th scope="col">Билд</th>
+            <th scope="col">Задача</th>
+            <th scope="col">База</th>
+            <th scope="col">Имя объекта</th>
+            <th scope="col">Лог</th>
+            <th scope="col">Автор</th>
+            <th scope="col">Дата выполнения</th>
+
+
+        </tr>
+        {% for item in result %}
+        <tr>
+            <td>{{item.build}}</td>
+            <td>{{item.task}}</td>
+            <td>{{item.database}}</td>
+            <td>{{item.filename}}</td>
+            <td>{{item.message}}</td>
+            <td>{{item.author}}</td>
+            <td>{{item.date}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+
+
+
+    </table>
+    </div>
+
+</body>
+</html>
